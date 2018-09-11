@@ -1,0 +1,154 @@
+<!-- API Node -->
+<script type="text/x-red" data-template-name="Tags">
+
+	<div class="form-row">
+		<label for="node-input-korona">
+			<i class="fa fa-key"></i> Credentials</span>
+		</label>
+		<input type="text" id="node-input-korona">
+	</div>
+
+	<div class="form-row">
+		<label for="node-input-name">
+			<i class="icon-tag"></i> Name</label>
+		<input type="text" id="node-input-name" placeholder="Name">
+	</div>
+
+	<div class="form-row">
+		<label for="node-input-action">
+			<i class="fa fa-wrench"></i>Action</label>
+		<select type="text" id="node-input-action" style="display: inline-block; width: 250px; vertical-align: top;">
+			<option value="GET" outputs="1" select>GET</option>
+		</select>
+	</div>
+
+	<div class="form-row">
+		<label for="node-input-rtype">
+			<i class="fa fa-wrench"></i>Return Type</label>
+		<select type="text" id="node-input-rtype" style="display: inline-block; width: 250px; vertical-align: top;">
+			<option value="OBJECT" outputs="1" select>OBJECT</option>
+			<option value="JSON" outputs="1">JSON</option>
+		</select>
+	</div>
+
+	<div class="form-row">
+		<label for="node-input-pagesize">
+			<i class="fa fa-stack-overflow"></i>Page Size</label>
+		<input type="number" id="node-input-pagesize" min="1" max="1000" placeholder="200" value="200">
+	</div>
+
+	<div class="form-row">
+		<label for="node-input-connections">
+			<i class="fa fa-plug"></i>Connections</label>
+		<input type="number" id="node-input-connections" min="1" max="50" placeholder="5" value="5">
+	</div>
+
+</script>
+
+<script type="text/x-red" data-help-name="Tags">
+	<p>Get your Tags using the KORONA.cloud REST API version 3.</p>
+
+	<ul>
+		<li>
+			<a href="https://koronacloud.com/web/">KORONA.cloud</a>
+		</li>
+		<li>
+			<a href="https://support.korona.de/korona-cloud-api/">API Documentation</a>
+		</li>
+		<li>
+			<a href="https://koronacloud.com/web/api/v3/swagger.yaml">Swagger API Specification File</a>
+		</li>
+	</ul>
+
+	<h3>Inputs</h3>
+	<dl class="message-properties">
+		<dt>payload
+			<span class="property-type">number | string | object</span>
+		</dt>
+		<dd>With the exeption of the GET-Method the Tags node will accept an Array of "Product" objects.</dd>
+		<dt class="optional">reset
+			<span class="property-type">any</span>
+		</dt>
+		<dd>if set stops all current requests and clears the stored values.</dd>
+		<dd>With the exeption of the GET-Method the Tags node will accept an Array of "Product" objects.</dd>
+		<dt class="optional">opts
+			<span class="property-type">object</span>
+		</dt>
+		<dd>if set the provided options are used instead of the defaults. See: Details and
+			<a href="https://support.korona.de/korona-cloud-api/">API Documentation</a>.
+		</dd>
+	</dl>
+
+	<h3>Outputs</h3>
+	<dl class="message-properties">
+		<dt>payload
+			<span class="property-type">string | Array(object) | Array(Tag)</span>
+		</dt>
+		<dd>If triggered the output will be an Array of Results or Tags in the case of the GET-Method or a Error Message String</dd>
+
+		<dt class="optional">statusCode
+			<span class="property-type">number</span>
+		</dt>
+		<dd>the
+			<a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">Status code</a> of returned by the request </dd>
+		<dt class="optional">requestURL
+			<span class="property-type">string</span>
+		</dt>
+		<dd>the complete URL returned by the response of your request.</dd>
+		<dt class="optional">response
+			<span class="property-type">(object)</span>
+		</dt>
+		<dd>the complete response object.</dd>
+	</dl>
+
+	<h3>Details</h3>
+	<p>In case of using the GET-Method you can set the
+		<code>msg.opts</code> Object for Sorting and Filter Options on a Request.</p>
+	<pre>{ 
+	size: "Number 1-1000", 
+	sort: "String",
+	revision: "Number 0-9223372036854775807", 
+	includeDeleted: "Boolean (default is false)"
+}<pre>
+	<b>Note: the provided options are Optional and are used instead of the defaults.</b> 
+</script>
+
+<script type="text/javascript">
+	RED.nodes.registerType('Tags', {
+		category: 'Combase',
+		defaults: {
+			korona: {
+				type: "korona-api-credentials",
+				required: true
+			},
+			name: {
+				value: ""
+			},
+			action: {
+				value: "GET",
+				required: true
+			},
+			rtype: {
+				value: "OBJECT",
+				required: true
+			},
+			pagesize: {
+				value: 200,
+				required: true
+			},
+			connections: {
+				value: 5,
+				required: true
+			},
+		},
+		inputs: 1,
+		outputs: 2,
+		color: "#EFEFEF",
+		icon: "korona.png",
+		inputLabels: "parameter for input",
+		outputLabels: ["stdout","stderr"],
+		label: function () {
+			return this.name || "Tags";
+		}
+	});
+</script>

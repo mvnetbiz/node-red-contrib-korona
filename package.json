@@ -1,0 +1,63 @@
+{
+  "name": "node-red-contrib-korona",
+  "version": "1.0.0",
+  "description": "Korona.Cloud for node-red",
+  "main": "node-red-contrib-korona.js",
+  "dependencies": {
+    "cloud-api-v3-js-client": "https://github.com/COMBASE/cloud-api-v3-js-client.git#v1.0.0"
+  },
+  "node-red": {
+    "nodes": {
+      "KORONA-API-Credentials": "./nodes/korona-api-credentials.js",
+      "Accounts": "./nodes/Accounts.js",
+      "Assortments": "./nodes/Assortments.js",
+      "Cashiers": "./nodes/Cashiers.js",
+      "CommodityGroups": "./nodes/CommodityGroups.js",
+      "Currencies": "./nodes/Currencies.js",
+      "CustomerGroups": "./nodes/CustomerGroups.js",
+      "CustomerOrders": "./nodes/CustomerOrders.js",
+      "Customers": "./nodes/Customers.js",
+      "EconomicZones": "./nodes/EconomicZones.js",
+      "InfoTexts": "./nodes/InfoTexts.js",
+      "OrganizationalUnits": "./nodes/OrganizationalUnits.js",
+      "PaymentMethods": "./nodes/PaymentMethods.js",
+      "PointsOfSale": "./nodes/PointsOfSale.js",
+      "PriceGroups": "./nodes/PriceGroups.js",
+      "Products": "./nodes/Products.js",
+      "Receipts": "./nodes/Receipts.js",
+      "SalesTaxes": "./nodes/SalesTaxes.js",
+      "Sectors": "./nodes/Sectors.js",
+      "Suppliers": "./nodes/Suppliers.js",
+      "Tags": "./nodes/Tags.js"
+    }
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "node-red",
+    "combase",
+    "pos",
+    "korona",
+    "cloud",
+    "red",
+    "iot"
+  ],
+  "author": {
+    "name": "Philipp Dylong",
+    "email": "phd@combase.de",
+    "url": "https://github.com/CreekPLD/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/COMBASE/node-red-contrib-korona/issues"
+  },
+  "homepage": "https://github.com/COMBASE/node-red-contrib-korona#readme"
+}
