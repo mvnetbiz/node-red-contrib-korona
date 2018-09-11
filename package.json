@@ -4,7 +4,7 @@
   "description": "Korona.Cloud for node-red",
   "main": "node-red-contrib-korona.js",
   "dependencies": {
-    "cloud-api-v3-js-client": "https://github.com/COMBASE/cloud-api-v3-js-client.git#v1.0.0"
+    "cloud-api-v3-js-client": "COMBASE/cloud-api-v3-js-client#12310490bc8284fe1b67bcb04bea020b277826ab"
   },
   "node-red": {
     "nodes": {
