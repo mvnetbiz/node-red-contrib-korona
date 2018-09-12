@@ -17,7 +17,7 @@ This uses [cloud-api-v3-js-client](https://www.npmjs.com/package/cloud-api-v3-js
 ## Documentation
 
 1. [Nodes](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/docs/ToDo_API-Features.md)
-2. [Examples](#Examples)
+2. [Examples](README.md#Examples)
 3. [Changelog](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/CHANGELOG.md)
 
 ## Getting started
