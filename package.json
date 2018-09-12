@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-korona",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Korona.Cloud for node-red",
   "main": "node-red-contrib-korona.js",
   "dependencies": {
