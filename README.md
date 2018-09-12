@@ -1,6 +1,6 @@
 # node-red-contrib-korona
 
-![KORONA](https://github.com/COMBASE/node-red-contrib-korona/docs/images/korona.svg)
+![KORONA](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/docs/images/korona.svg)
 
 With **KORONA.cloud Nodes** you can visually build fully featured Integration Flow's that Interact with the [KORONA.cloud](https://www.koronacloud.com/web) API v3 using [Node-RED](https://nodered.org/).
 ~~Almost~~ no coding skills required.
@@ -10,15 +10,15 @@ This uses [cloud-api-v3-js-client](https://www.npmjs.com/package/cloud-api-v3-js
 ![Release](https://img.shields.io/npm/v/node-red-contrib-korona.svg)
 ![npm](https://img.shields.io/npm/dm/node-red-contrib-korona.svg)
 
-![Nodes](https://github.com/COMBASE/node-red-contrib-korona/docs/images/nodes.png)
+![Nodes](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/docs/images/nodes.png)
 
-![Node Settings](https://github.com/COMBASE/node-red-contrib-korona/docs/images/node-settings.png)
+![Node Settings](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/docs/images/node-settings.png)
 
 ## Documentation
 
-1. [Nodes](https://github.com/COMBASE/node-red-contrib-korona/docs/ToDo_API-Features.md)
-2. [Example Flow](#Example\ Flow)
-3. [Changelog](https://github.com/COMBASE/node-red-contrib-chatbot/CHANGELOG.md)
+1. [Nodes](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/docs/ToDo_API-Features.md)
+2. [Examples](#Examples)
+3. [Changelog](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/CHANGELOG.md)
 
 ## Getting started
 
@@ -54,14 +54,21 @@ npm install node-red-contrib-korona
 
 Provides Nodes to interact with the [KORONA.cloud APIv3](https://www.koronacloud.com/web/api/v3/swagger.json)
 
-### Example Flow
+## Examples
 
-![Example Flow](https://github.com/COMBASE/node-red-contrib-korona/docs/images/flow-receipts.png)
+### 1st Example - Export Product's to a CSV File
+
+```json
+[{"id":"33ad28e6.aee8","type":"Products","z":"5c2a7df1.7ee7b4","korona":"","name":"","action":"GET","rtype":"OBJECT","pagesize":200,"connections":"5","x":420,"y":240,"wires":[["d1101e9d.933078","c05480df.fa283","8fae69e2.ad64f8"],["ea7f417.9fd45c","1f3af244.fe63de"]]},{"id":"4e4e6a0f.5184a4","type":"inject","z":"5c2a7df1.7ee7b4","name":"GET All","topic":"","payload":"","payloadType":"str","repeat":"","crontab":"","once":false,"onceDelay":"","x":130,"y":240,"wires":[["33ad28e6.aee8"]]},{"id":"44a70645.b202c8","type":"inject","z":"5c2a7df1.7ee7b4","name":"STOP","topic":"","payload":"true","payloadType":"bool","repeat":"","crontab":"","once":false,"onceDelay":"","x":130,"y":320,"wires":[["8540a4ee.9806f8"]]},{"id":"8540a4ee.9806f8","type":"change","z":"5c2a7df1.7ee7b4","name":"reset","rules":[{"t":"move","p":"payload","pt":"msg","to":"reset","tot":"msg"}],"action":"","property":"","from":"","to":"","reg":false,"x":270,"y":320,"wires":[["33ad28e6.aee8"]]},{"id":"257c3f9b.e26fa8","type":"comment","z":"5c2a7df1.7ee7b4","name":"Stop Current Requests","info":"","x":180,"y":280,"wires":[]},{"id":"1f013ff4.cd7e3","type":"comment","z":"5c2a7df1.7ee7b4","name":"Request all Products","info":"","x":170,"y":200,"wires":[]},{"id":"7fc29cd5.6ded8c","type":"csv","z":"5c2a7df1.7ee7b4","name":"","sep":",","hdrin":"","hdrout":true,"multi":"one","ret":"\\n","temp":"name,number,firstprice,listed","skip":"0","x":930,"y":240,"wires":[["7ae75e16.d90b38"]]},{"id":"c05480df.fa283","type":"debug","z":"5c2a7df1.7ee7b4","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","x":630,"y":140,"wires":[]},{"id":"ea7f417.9fd45c","type":"debug","z":"5c2a7df1.7ee7b4","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"payload","x":630,"y":400,"wires":[]},{"id":"be761bc6.7bade","type":"comment","z":"5c2a7df1.7ee7b4","name":"Error Response","info":"","x":640,"y":360,"wires":[]},{"id":"23e62d38.5ccbf2","type":"comment","z":"5c2a7df1.7ee7b4","name":"Response OK","info":"","x":630,"y":100,"wires":[]},{"id":"1f3af244.fe63de","type":"debug","z":"5c2a7df1.7ee7b4","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","x":610,"y":440,"wires":[]},{"id":"d1101e9d.933078","type":"debug","z":"5c2a7df1.7ee7b4","name":"","active":false,"tosidebar":true,"console":false,"tostatus":false,"complete":"true","x":610,"y":180,"wires":[]},{"id":"8fae69e2.ad64f8","type":"split","z":"5c2a7df1.7ee7b4","name":"","splt":"\\n","spltType":"str","arraySplt":1,"arraySpltType":"len","stream":false,"addname":"","x":610,"y":240,"wires":[["eb0e4e88.eeff1"]]},{"id":"6e522dce.6f7c6c","type":"function","z":"5c2a7df1.7ee7b4","name":"opts","func":"msg.opts = {\n    page: 1,\n\tsize: 5, \n\tsort: \"number\",\n\trevision: 0, \n\tincludeDeleted: false,\n\tproductCodes: null,\n\tcommodityGroup: null,\n\tassortment: null,\n\ttag: null\n}\nreturn msg;","outputs":1,"noerr":0,"x":270,"y":160,"wires":[["33ad28e6.aee8"]]},{"id":"152a43d5.0dc1fc","type":"inject","z":"5c2a7df1.7ee7b4","name":"GO","topic":"","payload":"","payloadType":"str","repeat":"","crontab":"","once":false,"onceDelay":"","x":130,"y":160,"wires":[["6e522dce.6f7c6c"]]},{"id":"7ae75e16.d90b38","type":"file","z":"5c2a7df1.7ee7b4","name":"","filename":"products.cvs","appendNewline":false,"createDir":true,"overwriteFile":"false","x":1090,"y":240,"wires":[]},{"id":"eb0e4e88.eeff1","type":"change","z":"5c2a7df1.7ee7b4","name":"get firstprice","rules":[{"t":"move","p":"payload.prices[0].value","pt":"msg","to":"payload.firstprice","tot":"msg"}],"action":"","property":"","from":"","to":"","reg":false,"x":770,"y":240,"wires":[["7fc29cd5.6ded8c"]]}]
+```
+
+### 2nd Example of KORONA Node Options
+
+![Example2](https://raw.githubusercontent.com/COMBASE/node-red-contrib-korona/master/docs/images/flow-receipts.png)
 
 Dependencies:
 
 - [node-red-contrib-combine](https://flows.nodered.org/node/node-red-contrib-combine)
-- [node-red-contrib-korona](https://flows.nodered.org/node/node-red-contrib-korona)
 
 Export some POS-Receipts
 
